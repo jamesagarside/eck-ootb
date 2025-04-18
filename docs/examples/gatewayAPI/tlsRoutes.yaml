@@ -1,0 +1,35 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: example-kb-route
+  namespace: deployments
+spec:
+  parentRefs:
+    - name: cilium-gateway-eck
+      namespace: kube-system
+  hostnames:
+  - "monitoring.kb.eck.dev"
+  rules:
+    - backendRefs:
+      - name: example-deployment-kb-http
+        namespace: deployments
+        port: 5601
+
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: example-es-route
+  namespace: deployments
+spec:
+  parentRefs:
+    - name: cilium-gateway-eck
+      namespace: kube-system
+  hostnames:
+  - "example.es.eck.dev"
+  rules:
+    - backendRefs:
+      - name: example-deployment-es-http
+        namespace: deployments
+        port: 9200

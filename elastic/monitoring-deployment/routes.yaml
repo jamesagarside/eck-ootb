@@ -1,0 +1,35 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: monitoring-deployment-kb-route
+  namespace: monitoring
+spec:
+  parentRefs:
+    - name: cilium-gateway-eck
+      namespace: kube-system
+  hostnames:
+  - "monitoring.kb.eck.dev"
+  rules:
+    - backendRefs:
+      - name: monitoring-deployment-kb-http
+        namespace: monitoring
+        port: 5601
+
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: monitoring-deployment-es-route
+  namespace: monitoring
+spec:
+  parentRefs:
+    - name: cilium-gateway-eck
+      namespace: kube-system
+  hostnames:
+  - "monitoring.es.eck.dev"
+  rules:
+    - backendRefs:
+      - name: monitoring-deployment-es-http
+        namespace: monitoring
+        port: 9200

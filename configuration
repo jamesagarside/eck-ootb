@@ -1,0 +1,9 @@
+KUBERNETES_CLUSTER_NAME=eck-ootb
+# This is the IP address you would like to use for the Kubernetes API server.
+KUBERNETES_ENDPOINT=192.168.3.74
+KUBERNETES_API_PORT=6443
+
+TALOS_VERSION=v1.9.5
+
+# development, production
+DEPLOYMENT_TYPE=development

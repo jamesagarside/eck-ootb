@@ -1,0 +1,4 @@
+machine:
+  install:
+    # Disk can be obtained by running: talosctl -n $KUBERNETES_ENDPOINT get disks --insecure
+    disk: /dev/vda

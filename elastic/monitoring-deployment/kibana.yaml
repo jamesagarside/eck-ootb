@@ -1,0 +1,28 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: monitoring-deployment
+  namespace: monitoring
+spec:
+  version: 8.17.4
+  count: 1
+  elasticsearchRef:
+    name: monitoring-deployment
+  podTemplate:
+    spec:
+      containers:
+      - name: kibana
+        env:
+          - name: NODE_OPTIONS
+            value: "--max-old-space-size=1024"
+        resources:
+          requests:
+            memory: 1Gi
+            cpu: 0.5
+          limits:
+            memory: 1Gi
+            cpu: 1
+  http:
+    tls:
+      certificate:
+        secretName: eck-certificate

@@ -1,0 +1,5 @@
+machine:
+  nodeLabels:
+      ingress: true
+cluster:
+  allowSchedulingOnControlPlanes: true
